@@ -3,8 +3,6 @@ from ics import Calendar, Event
 import datetime
 import login
 
-from selenium.webdriver.edge.options import Options
-
 def get_timetable(driver, username, password):
 
     driver.get('https://dt-ctt.hust.edu.vn/Students/Timetables.aspx')

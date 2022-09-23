@@ -15,7 +15,10 @@ required = {'selenium', 'ics'}
 setup(required)
 
 from selenium import webdriver
-from selenium.webdriver.edge.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+
 import datetime
 from get_timetable import *
 
@@ -33,9 +36,7 @@ def main():
     os.system('cls')
     password = input('Nhập password: ')
     os.system('cls')
-    opt = Options()
-    opt.add_argument('Inprivate')
-    driver = webdriver.Edge(options = opt)
+    driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
     driver.maximize_window()
     time_table = get_timetable(driver, username, password)
     to_ics(first_day, time_table, file_path)
