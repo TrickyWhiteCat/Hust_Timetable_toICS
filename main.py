@@ -11,7 +11,7 @@ def setup(required):
         # implement pip as a subprocess:
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
-required = {'selenium', 'ics'}
+required = {'selenium', 'ics', 'webdriver_manager'}
 setup(required)
 
 from selenium import webdriver
