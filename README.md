@@ -14,7 +14,7 @@ choco install chromedriver
 3. Clone repo này về rồi chạy file main.py, hoặc nếu không biết gì thì làm theo bước 4.
 4. Ấn vào cái nút Code màu xanh lá, chọn Download ZIP. Giải nén tệp tin vừa chọn ra 1 folder bất kỳ.
 5. Mở folder vừa giải nén ra, ấn vào đường dẫn thư mục và gõ "cmd" lên đó rồi ấn Enter
-![Cmd](https://husteduvn-my.sharepoint.com/:i:/g/personal/tuan_nm214940_sis_hust_edu_vn/EV81GnZIgQ5LpPdsW3dWsIUB_3v-IXJhVI0oYAt6UyhLzg?e=cvTktD "Cmd")
+![Cmd](https://drive.google.com/file/d/1FN5LgEBq9igp49ttvx2i7ekci81XGzdx/view?usp=sharing)
 6. Gõ 
 ```console
 python main.py
