@@ -44,14 +44,11 @@ def __format_row(row):
     weeks = __get_weeks(r_row[1])
 
     room = r_row[2]
-
     class_code = r_row[3]
-
     class_type = r_row[4]
-
     course_code = r_row[6]
-
     course_name = r_row[7]
+
     row_data = [days[day], start, end, weeks, room, class_code, class_type, course_code, course_name, r_row[8:]]
     return row_data
 
@@ -76,10 +73,10 @@ def to_ics(first_day, data, file_path = 'time_table.ics'):
         class_type = row[6]
         course_code = row[7]
         course_name = row[8]
-        detail = 'Mã học phần: {}\nMã lớp: {}\n'.format(course_code, class_code) + '\n'.join(row[9])
+        detail = f"Mã học phần: {course_code}\nMã lớp: {class_code}\n" + '\n'.join(row[9])
         for w in row[3]:
-            s_delta = datetime.timedelta(weeks=w, days = (days.index(row[0]) - 2), hours = row[1].hour, minutes = row[1].minute)
-            e_delta = datetime.timedelta(weeks=w, days = (days.index(row[0]) - 2), hours = row[2].hour, minutes = row[2].minute)
+            s_delta = datetime.timedelta(weeks=w - 1, days = (days.index(row[0]) - 2), hours = row[1].hour, minutes = row[1].minute)
+            e_delta = datetime.timedelta(weeks=w - 1, days = (days.index(row[0]) - 2), hours = row[2].hour, minutes = row[2].minute)
             start = first_day + s_delta
             end = first_day + e_delta
             event = Event(name=class_type + ' - ' + course_name, begin=start, end = end, location=room, description=detail)
