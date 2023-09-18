@@ -1,18 +1,6 @@
+import setup # Automatically set everything up.
+
 import os
-import sys
-import subprocess
-import pkg_resources
-
-def setup(required):
-    installed = {pkg.key for pkg in pkg_resources.working_set}
-    missing   = required - installed
-
-    if missing:
-        # implement pip as a subprocess:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
-
-required = {'selenium', 'ics', 'webdriver_manager'}
-setup(required)
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -24,9 +12,9 @@ from get_timetable import *
 
 def main():
     os.system('cls')
-    first_day = input('Nhập ngày đầu tiên của tuần 1 của năm học theo định dạng YYYY-MM-DD (Nhấn Enter nếu là năm 2021): ')
+    first_day = input('Nhập ngày đầu tiên của tuần 1 của năm học theo định dạng YYYY-MM-DD (Nhấn Enter nếu là năm 2022): ')
     if first_day == '':
-        first_day = datetime.datetime(year=2021, month=9, day = 27, tzinfo = datetime.datetime.now().astimezone().tzinfo)
+        first_day = datetime.datetime(year=2022, month=10, day = 3, tzinfo = datetime.datetime.now().astimezone().tzinfo)
     else:
         date = datetime.date.fromisoformat(first_day)
         first_day = datetime.datetime(year = date.year, month = date.month, day = date.day, tzinfo = datetime.datetime.now().astimezone().tzinfo)

@@ -10,7 +10,9 @@ def get_timetable(driver, username, password):
     W_rows  = driver.find_elements(By.XPATH, r"//tr[starts-with(@id, 'ctl00_ctl00_contentPane_MainPanel_MainContent_gvStudentRegister_DXDataRow')]")
     data = []
     for row in W_rows:
-        data.append(__format_row(row))
+        processed = __format_row(row)
+        if processed != None:
+            data.append(processed)
     return data
 
 def __get_time(time):
@@ -30,8 +32,11 @@ def __format_row(row):
         r_row.append(cell.text)
         prev_cell = cell.text
 
-    # ['Thứ', 'Start time', 'End time', [Tuần học (chia rõ các tuần)], 'Phòng học', 'Mã lớp', 'Loại lớp', 'Mã học phần', 'Tên học phần' , [Các thông tin khác]]
+    # Skip current row if the class is not scheduled
+    if r_row[0] == ' ':
+        return
 
+    # ['Thứ', 'Start time', 'End time', [Tuần học (chia rõ các tuần)], 'Phòng học', 'Mã lớp', 'Loại lớp', 'Mã học phần', 'Tên học phần' , [Các thông tin khác]]
     # 'Thứ 2,6h45 - 9h10' --> | 2 | 06:45:00 | 09:10:00 |
     days = ('dumb', 'dumb', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')
     day, time = r_row[0].split(',')
